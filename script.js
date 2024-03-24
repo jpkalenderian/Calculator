@@ -138,31 +138,72 @@ buttonPoint.addEventListener("click", function () {
 
 buttonPlus.addEventListener("click", function () {
   if (display.textContent.length < 10) {
-    display.textContent += "+";
+    let lastChar = display.textContent[display.textContent.length - 1];
+    if (
+      lastChar !== "+" &&
+      lastChar !== "-" &&
+      lastChar !== "×" &&
+      lastChar !== "÷"
+    ) {
+      display.textContent += "+";
+    }
   }
 });
 
 buttonMinus.addEventListener("click", function () {
   if (display.textContent.length < 10) {
-    display.textContent += "-";
+    let lastChar = display.textContent[display.textContent.length - 1];
+    if (
+      lastChar !== "+" &&
+      lastChar !== "-" &&
+      lastChar !== "×" &&
+      lastChar !== "÷"
+    ) {
+      display.textContent += "-";
+    }
   }
 });
 
 buttonDivide.addEventListener("click", function () {
   if (display.textContent.length < 10) {
-    display.textContent += "/";
+    let lastChar = display.textContent[display.textContent.length - 1];
+    if (
+      lastChar !== "+" &&
+      lastChar !== "-" &&
+      lastChar !== "×" &&
+      lastChar !== "÷"
+    ) {
+      display.textContent += "÷";
+    }
   }
 });
 
 buttonTimes.addEventListener("click", function () {
   if (display.textContent.length < 10) {
-    display.textContent += "*";
+    let lastChar = display.textContent[display.textContent.length - 1];
+    if (
+      lastChar !== "+" &&
+      lastChar !== "-" &&
+      lastChar !== "×" &&
+      lastChar !== "÷"
+    ) {
+      display.textContent += "×";
+    }
   }
 });
 
 buttonPercent.addEventListener("click", function () {
   if (display.textContent.length < 10) {
-    display.textContent += "%";
+    let lastChar = display.textContent[display.textContent.length - 1];
+    if (
+      lastChar !== "+" &&
+      lastChar !== "-" &&
+      lastChar !== "×" &&
+      lastChar !== "÷" &&
+      lastChar !== "%"
+    ) {
+      display.textContent += "%";
+    }
   }
 });
 
@@ -180,12 +221,30 @@ buttonBack.addEventListener("click", function () {
 });
 
 buttonEquals.addEventListener("click", function () {
-  if (display.textContent.includes("%")) {
-    value = eval(display.textContent) * 0.01;
-    display.textContent = value.toFixed(2);
-  } else if (display.textContent.includes("/")) {
-    value = eval(display.textContent);
-    display.textContent = value.toFixed(2);
+  let expression = display.textContent;
+  expression = expression.replace(/÷/g, "/");
+  expression = expression.replace(/×/g, "*");
+
+  if (expression.includes("%")) {
+    let parts = expression.split("%");
+    let number = parseFloat(parts[0]);
+
+    if (parts[1].trim() !== "") {
+      let moduloValue = parseFloat(parts[1]);
+      display.textContent = number % moduloValue;
+    } else {
+      let value = number * 0.01;
+      display.textContent = value.toFixed(2);
+    }
+  } else if (expression.includes("/")) {
+    if (eval(expression) % 1 !== 0) {
+      display.textContent = eval(expression).toFixed(2);
+    } else {
+      display.textContent = eval(expression);
+    }
+  } else if (expression.includes("*")) {
+    value = eval(expression);
+    display.textContent = value;
   } else {
     display.textContent = eval(display.textContent);
   }
