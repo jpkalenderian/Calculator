@@ -20,7 +20,7 @@ Press the "Clear" button to reset the calculator.
 Press the "Back" button to delete the last digit or operator entered.
 
 ## Screenshots
-![Calculator Screenshot](Calculator/Screenshots/Calculator_Screenshot.png)
+![Calculator Screenshot](/Screenshots/Calculator_Screenshot.png)
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
