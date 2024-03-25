@@ -190,11 +190,11 @@ buttonEquals.addEventListener("click", function () {
       display.textContent = number % moduloValue;
     } else {
       let value = number * 0.01;
-      display.textContent = value.toFixed(10);
+      display.textContent = value.toFixed(3);
     }
   } else if (expression.includes("/")) {
     if (eval(expression) % 1 !== 0) {
-      display.textContent = eval(expression).toFixed(10);
+      display.textContent = eval(expression).toFixed(3);
     } else {
       display.textContent = eval(expression);
     }
