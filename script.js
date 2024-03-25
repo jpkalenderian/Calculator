@@ -74,13 +74,11 @@ buttonClear.addEventListener("click", function () {
 });
 
 buttonPoint.addEventListener("click", function () {
+  let lastChar = display.textContent[display.textContent.length - 1];
   if (display.textContent === "0") {
     display.textContent = "0.";
   } else {
-    if (
-      (display.textContent.length < 10) &
-      !display.textContent.includes(".")
-    ) {
+    if ((display.textContent.length < 10) & !lastChar.includes(".")) {
       display.textContent += ".";
     }
   }
