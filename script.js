@@ -19,104 +19,54 @@ const buttonBack = document.getElementById("back");
 const buttonPercent = document.getElementById("percent");
 const buttonEquals = document.getElementById("equals");
 
-buttonZero.addEventListener("click", function () {
+function handleNumberClick(number) {
   if (display.textContent === "0") {
-    display.textContent = "0";
+    display.textContent = number;
   } else {
     if (display.textContent.length < 10) {
-      display.textContent += "0";
+      display.textContent += number;
     }
   }
+}
+
+buttonZero.addEventListener("click", function () {
+  handleNumberClick("0");
 });
 
 buttonOne.addEventListener("click", function () {
-  if (display.textContent === "0") {
-    display.textContent = "1";
-  } else {
-    if (display.textContent.length < 10) {
-      display.textContent += "1";
-    }
-  }
+  handleNumberClick("1");
 });
 
 buttonTwo.addEventListener("click", function () {
-  if (display.textContent === "0") {
-    display.textContent = "2";
-  } else {
-    if (display.textContent.length < 10) {
-      display.textContent += "2";
-    }
-  }
+  handleNumberClick("2");
 });
 
 buttonThree.addEventListener("click", function () {
-  if (display.textContent === "0") {
-    display.textContent = "3";
-  } else {
-    if (display.textContent.length < 10) {
-      display.textContent += "3";
-    }
-  }
+  handleNumberClick("3");
 });
 
 buttonFour.addEventListener("click", function () {
-  if (display.textContent === "0") {
-    display.textContent = "4";
-  } else {
-    if (display.textContent.length < 10) {
-      display.textContent += "4";
-    }
-  }
+  handleNumberClick("4");
 });
 
 buttonFive.addEventListener("click", function () {
-  if (display.textContent === "0") {
-    display.textContent = "5";
-  } else {
-    if (display.textContent.length < 10) {
-      display.textContent += "5";
-    }
-  }
+  handleNumberClick("5");
 });
 
 buttonSix.addEventListener("click", function () {
-  if (display.textContent === "0") {
-    display.textContent = "6";
-  } else {
-    if (display.textContent.length < 10) {
-      display.textContent += "6";
-    }
-  }
+  handleNumberClick("6");
 });
 
 buttonSeven.addEventListener("click", function () {
-  if (display.textContent === "0") {
-    display.textContent = "7";
-  } else {
-    if (display.textContent.length < 10) {
-      display.textContent += "7";
-    }
-  }
+  handleNumberClick("7");
 });
 
 buttonEight.addEventListener("click", function () {
-  if (display.textContent === "0") {
-    display.textContent = "8";
-  } else {
-    if (display.textContent.length < 10) {
-      display.textContent += "8";
-    }
-  }
+  handleNumberClick("8");
 });
 
 buttonNine.addEventListener("click", function () {
-  if (display.textContent === "0") {
-    display.textContent = "9";
-  } else {
-    if (display.textContent.length < 10) {
-      display.textContent += "9";
-    }
-  }
+  handleNumberClick("9");
 });
 
 buttonClear.addEventListener("click", function () {
@@ -140,11 +90,13 @@ buttonPlus.addEventListener("click", function () {
   if (display.textContent.length < 10) {
     let lastChar = display.textContent[display.textContent.length - 1];
     if (
-      lastChar !== "+" &&
-      lastChar !== "-" &&
-      lastChar !== "×" &&
-      lastChar !== "÷"
+      lastChar === "+" ||
+      lastChar === "-" ||
+      lastChar === "×" ||
+      lastChar === "÷"
     ) {
+      display.textContent = display.textContent.replace(lastChar, "+");
+    } else {
       display.textContent += "+";
     }
   }
@@ -154,11 +106,13 @@ buttonMinus.addEventListener("click", function () {
   if (display.textContent.length < 10) {
     let lastChar = display.textContent[display.textContent.length - 1];
     if (
-      lastChar !== "+" &&
-      lastChar !== "-" &&
-      lastChar !== "×" &&
-      lastChar !== "÷"
+      lastChar === "+" ||
+      lastChar === "-" ||
+      lastChar === "×" ||
+      lastChar === "÷"
     ) {
+      display.textContent = display.textContent.replace(lastChar, "-");
+    } else {
       display.textContent += "-";
     }
   }
@@ -168,11 +122,13 @@ buttonDivide.addEventListener("click", function () {
   if (display.textContent.length < 10) {
     let lastChar = display.textContent[display.textContent.length - 1];
     if (
-      lastChar !== "+" &&
-      lastChar !== "-" &&
-      lastChar !== "×" &&
-      lastChar !== "÷"
+      lastChar === "+" ||
+      lastChar === "-" ||
+      lastChar === "×" ||
+      lastChar === "÷"
     ) {
+      display.textContent = display.textContent.replace(lastChar, "÷");
+    } else {
       display.textContent += "÷";
     }
   }
@@ -182,11 +138,13 @@ buttonTimes.addEventListener("click", function () {
   if (display.textContent.length < 10) {
     let lastChar = display.textContent[display.textContent.length - 1];
     if (
-      lastChar !== "+" &&
-      lastChar !== "-" &&
-      lastChar !== "×" &&
-      lastChar !== "÷"
+      lastChar === "+" ||
+      lastChar === "-" ||
+      lastChar === "×" ||
+      lastChar === "÷"
     ) {
+      display.textContent = display.textContent.replace(lastChar, "×");
+    } else {
       display.textContent += "×";
     }
   }
@@ -234,11 +192,11 @@ buttonEquals.addEventListener("click", function () {
       display.textContent = number % moduloValue;
     } else {
       let value = number * 0.01;
-      display.textContent = value.toFixed(2);
+      display.textContent = value.toFixed(10);
     }
   } else if (expression.includes("/")) {
     if (eval(expression) % 1 !== 0) {
-      display.textContent = eval(expression).toFixed(2);
+      display.textContent = eval(expression).toFixed(10);
     } else {
       display.textContent = eval(expression);
     }
