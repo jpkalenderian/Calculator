@@ -3,7 +3,7 @@ This is a simple calculator web application built using HTML, CSS, and JavaScrip
 
 ## Features
 Addition
-Subtraction
+Subtraction 
 Multiplication
 Division
 Percentage calculation
