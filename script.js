@@ -171,7 +171,7 @@ buttonMinus.addEventListener("click", function () {
 Display should be less than 10.
 If the last character is an operator it will be replaced by a divide sign.
 Otherwise, a divide sign will be added to the display. 
-[The user can now enter a decimal point]..
+[The user can now enter a decimal point].
 */
 buttonDivide.addEventListener("click", function () {
   if (display.textContent.length < 10) {
@@ -289,6 +289,7 @@ buttonEquals.addEventListener("click", function () {
       parts[1].trim().includes("/")
     ) {
       expression = expression.replace(/%/g, "*0.01");
+
       if (eval(expression) % 1 !== 0) {
         display.textContent = eval(expression).toFixed(2);
         decimalEntered = true;
@@ -298,6 +299,7 @@ buttonEquals.addEventListener("click", function () {
       }
     } else if (lastChar == "%") {
       expression = expression.replace(/%/g, "*0.01");
+
       if (eval(expression) % 1 !== 0) {
         display.textContent = eval(expression).toFixed(2);
         decimalEntered = true;
