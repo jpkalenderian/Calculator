@@ -1,4 +1,4 @@
-// Called the elements needed into constants
+// Called the elements needed into constants.
 const display = document.getElementById("display");
 const buttonZero = document.getElementById("btn0");
 const buttonOne = document.getElementById("btn1");
@@ -20,7 +20,10 @@ const buttonBack = document.getElementById("back");
 const buttonPercent = document.getElementById("percent");
 const buttonEquals = document.getElementById("equals");
 
-// Created a variable to keep track of deimal entries
+/* Created a variable to keep track of decimal entries.
+This variable is switched to true and false in different functions to make sure that the user 
+can't enter a decimal point in random places.
+*/
 let decimalEntered = false;
 
 /* 
@@ -120,6 +123,7 @@ buttonPoint.addEventListener("click", function () {
 Display should be less than 10.
 If the last character is an operator it will be replaced by a plus sign.
 Otherwise, a plus sign will be added to the display. 
+[The user can now enter a decimal point].
 */
 buttonPlus.addEventListener("click", function () {
   if (display.textContent.length < 10) {
@@ -143,6 +147,7 @@ buttonPlus.addEventListener("click", function () {
 Display should be less than 10.
 If the last character is an operator it will be replaced by a minus sign.
 Otherwise, a minus sign will be added to the display. 
+[The user can now enter a decimal point].
 */
 buttonMinus.addEventListener("click", function () {
   if (display.textContent.length < 10) {
@@ -166,6 +171,7 @@ buttonMinus.addEventListener("click", function () {
 Display should be less than 10.
 If the last character is an operator it will be replaced by a divide sign.
 Otherwise, a divide sign will be added to the display. 
+[The user can now enter a decimal point]..
 */
 buttonDivide.addEventListener("click", function () {
   if (display.textContent.length < 10) {
@@ -189,6 +195,7 @@ buttonDivide.addEventListener("click", function () {
 Display should be less than 10.
 If the last character is an operator it will be replaced by a times sign.
 Otherwise, a times sign will be added to the display. 
+[The user can now enter a decimal point].
 */
 buttonTimes.addEventListener("click", function () {
   if (display.textContent.length < 10) {
@@ -284,13 +291,20 @@ buttonEquals.addEventListener("click", function () {
       expression = expression.replace(/%/g, "*0.01");
       if (eval(expression) % 1 !== 0) {
         display.textContent = eval(expression).toFixed(2);
+        decimalEntered = true;
       } else {
         display.textContent = eval(expression);
         decimalEntered = false;
       }
     } else if (lastChar == "%") {
       expression = expression.replace(/%/g, "*0.01");
-      display.textContent = eval(expression);
+      if (eval(expression) % 1 !== 0) {
+        display.textContent = eval(expression).toFixed(2);
+        decimalEntered = true;
+      } else {
+        display.textContent = eval(expression);
+        decimalEntered = false;
+      }
     } else {
       let moduloValue = parseFloat(parts[1]);
       display.textContent = number % moduloValue;
@@ -298,6 +312,7 @@ buttonEquals.addEventListener("click", function () {
   } else if (expression.includes("/")) {
     if (eval(expression) % 1 !== 0) {
       display.textContent = eval(expression).toFixed(2);
+      decimalEntered = true;
     } else {
       display.textContent = eval(expression);
       decimalEntered = false;
@@ -305,6 +320,7 @@ buttonEquals.addEventListener("click", function () {
   } else if (expression.includes("*")) {
     if (eval(expression) % 1 !== 0) {
       display.textContent = eval(expression).toFixed(2);
+      decimalEntered = true;
     } else {
       display.textContent = eval(expression);
       decimalEntered = false;
@@ -312,6 +328,7 @@ buttonEquals.addEventListener("click", function () {
   } else {
     if (eval(expression) % 1 !== 0) {
       display.textContent = eval(expression).toFixed(2);
+      decimalEntered = true;
     } else {
       display.textContent = eval(expression);
       decimalEntered = false;
