@@ -1,11 +1,12 @@
 # Calculator
-This is a simple calculator web application built using HTML, CSS, and JavaScript. It allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, and division, as well as percentage calculations.
+This is a simple calculator web application built using HTML, CSS, and JavaScript. It allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, and division, as well as modulo, and percentage calculations.
 
 ## Features
 Addition<br>
 Subtraction<br>
 Multiplication<br>
 Division<br>
+Modulo<br>
 Percentage calculation<br>
 Clear button to reset the calculator<br>
 Back button to delete the last digit or operator entered<br>
