@@ -4,11 +4,12 @@ const buttonPoint = document.getElementById("point");
 const buttonBack = document.getElementById("back");
 const buttonPercent = document.getElementById("percent");
 const buttonEquals = document.getElementById("equals");
+const numberAndOperatorButtons = document.querySelectorAll(".button");
 
-const numberButton = document.querySelectorAll(".button");
+let lastChar = display.textContent[display.textContent.length - 1];
 let decimalEntered = false;
 
-numberButton.forEach(button => {
+numberAndOperatorButtons.forEach(button => {
     if (button.textContent.match(/[0-9]/)) {
         button.addEventListener("click", function () {
             handleNumberClick(button.textContent);
@@ -33,7 +34,6 @@ function handleNumberClick(number) {
 
 function handleOperatorClick(operator) {
     if (display.textContent.length < 10) {
-        let lastChar = display.textContent[display.textContent.length - 1];
         if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷" || lastChar === ".") {
             display.textContent = display.textContent.replace(lastChar, operator);
             decimalEntered = false;
@@ -50,7 +50,6 @@ buttonClear.addEventListener("click", function () {
 });
 
 buttonPoint.addEventListener("click", function () {
-    let lastChar = display.textContent[display.textContent.length - 1];
     if (display.textContent === "0") {
         display.textContent = "0.";
         decimalEntered = true;
@@ -64,7 +63,6 @@ buttonPoint.addEventListener("click", function () {
 
 buttonPercent.addEventListener("click", function () {
     if (display.textContent.length < 10) {
-        let lastChar = display.textContent[display.textContent.length - 1];
         if (lastChar !== "+" && lastChar !== "-" && lastChar !== "×" && lastChar !== "÷" && lastChar !== "%" && lastChar !== ".") {
             display.textContent += "%";
             decimalEntered = false;
@@ -99,7 +97,6 @@ buttonEquals.addEventListener("click", function () {
     let expression = display.textContent;
     expression = expression.replace(/÷/g, "/");
     expression = expression.replace(/×/g, "*");
-    let lastChar = display.textContent[display.textContent.length - 1];
 
     if (expression.includes("%")) {
         let parts = expression.split("%");
