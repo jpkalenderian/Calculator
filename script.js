@@ -67,6 +67,7 @@ buttonPercent.addEventListener("click", function () {
         let lastChar = display.textContent[display.textContent.length - 1];
         if (lastChar !== "+" && lastChar !== "-" && lastChar !== "×" && lastChar !== "÷" && lastChar !== "%" && lastChar !== ".") {
             display.textContent += "%";
+            decimalEntered = false;
         }
     }
 });
@@ -106,25 +107,17 @@ buttonEquals.addEventListener("click", function () {
 
         if (parts[1].trim().includes("*") || parts[1].trim().includes("-") || parts[1].trim().includes("+") || parts[1].trim().includes("/") || lastChar === "%") {
             expression = expression.replace(/%/g, "*0.01");
-
-            if (eval(expression) % 1 !== 0) {
-                display.textContent = eval(expression).toFixed(2);
-                decimalEntered = true;
-            } else {
-                display.textContent = eval(expression);
-                decimalEntered = false;
-            }
         } else {
             let moduloValue = parseFloat(parts[1]);
-            display.textContent = number % moduloValue;
+            expression = number % moduloValue;
         }
+    }
+
+    if (eval(expression) % 1 !== 0) {
+        display.textContent = eval(expression).toFixed(2);
+        decimalEntered = true;
     } else {
-        if (eval(expression) % 1 !== 0) {
-            display.textContent = eval(expression).toFixed(2);
-            decimalEntered = true;
-        } else {
-            display.textContent = eval(expression);
-            decimalEntered = false;
-        }
+        display.textContent = eval(expression);
+        decimalEntered = false;
     }
 });
