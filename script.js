@@ -8,6 +8,7 @@ const numberAndOperatorButtons = document.querySelectorAll(".button");
 
 let lastChar = display.textContent[display.textContent.length - 1];
 let decimalEntered = false;
+const displayLength = 14;
 
 numberAndOperatorButtons.forEach(button => {
     if (button.textContent.match(/[0-9]/)) {
@@ -26,14 +27,14 @@ function handleNumberClick(number) {
     if (display.textContent === "0") {
         display.textContent = number;
     } else {
-        if (display.textContent.length < 10) {
+        if (display.textContent.length < displayLength) {
             display.textContent += number;
         }
     }
 }
 
 function handleOperatorClick(operator) {
-    if (display.textContent.length < 10) {
+    if (display.textContent.length < displayLength) {
         if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷" || lastChar === ".") {
             display.textContent = display.textContent.replace(lastChar, operator);
             decimalEntered = false;
@@ -54,7 +55,7 @@ buttonPoint.addEventListener("click", function () {
         display.textContent = "0.";
         decimalEntered = true;
     } else {
-        if (display.textContent.length < 10 && decimalEntered === false && !lastChar.includes(".") && !lastChar.includes("*") && !lastChar.includes("+") && !lastChar.includes("/") && !lastChar.includes("-") && !lastChar.includes("%")) {
+        if (display.textContent.length < displayLength && decimalEntered === false && !lastChar.includes(".") && !lastChar.includes("*") && !lastChar.includes("+") && !lastChar.includes("/") && !lastChar.includes("-") && !lastChar.includes("%")) {
             display.textContent += ".";
             decimalEntered = true;
         }
@@ -62,7 +63,7 @@ buttonPoint.addEventListener("click", function () {
 });
 
 buttonPercent.addEventListener("click", function () {
-    if (display.textContent.length < 10) {
+    if (display.textContent.length < displayLength) {
         if (lastChar !== "+" && lastChar !== "-" && lastChar !== "×" && lastChar !== "÷" && lastChar !== "%" && lastChar !== ".") {
             display.textContent += "%";
             decimalEntered = false;
