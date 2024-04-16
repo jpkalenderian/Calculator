@@ -6,7 +6,6 @@ const buttonPercent = document.getElementById("percent");
 const buttonEquals = document.getElementById("equals");
 const numberAndOperatorButtons = document.querySelectorAll(".button");
 
-let lastChar = display.textContent[display.textContent.length - 1];
 let decimalEntered = false;
 const displayLength = 14;
 
@@ -34,6 +33,7 @@ function handleNumberClick(number) {
 }
 
 function handleOperatorClick(operator) {
+    let lastChar = display.textContent[display.textContent.length - 1];
     if (display.textContent.length < displayLength) {
         if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷" || lastChar === ".") {
             display.textContent = display.textContent.replace(lastChar, operator);
@@ -51,6 +51,7 @@ buttonClear.addEventListener("click", function () {
 });
 
 buttonPoint.addEventListener("click", function () {
+    let lastChar = display.textContent[display.textContent.length - 1];
     if (display.textContent === "0") {
         display.textContent = "0.";
         decimalEntered = true;
@@ -63,6 +64,7 @@ buttonPoint.addEventListener("click", function () {
 });
 
 buttonPercent.addEventListener("click", function () {
+    let lastChar = display.textContent[display.textContent.length - 1];
     if (display.textContent.length < displayLength) {
         if (lastChar !== "+" && lastChar !== "-" && lastChar !== "×" && lastChar !== "÷" && lastChar !== "%" && lastChar !== ".") {
             display.textContent += "%";
@@ -95,6 +97,7 @@ buttonBack.addEventListener("click", function () {
 });
 
 buttonEquals.addEventListener("click", function () {
+    let lastChar = display.textContent[display.textContent.length - 1];
     let expression = display.textContent;
     expression = expression.replace(/÷/g, "/");
     expression = expression.replace(/×/g, "*");
