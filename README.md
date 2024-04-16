@@ -24,4 +24,4 @@ Press the "Back" button to delete the last digit or operator entered.<br>
 ![Calculator Screenshot](/Screenshots/Calculator_Screenshot.png)
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
